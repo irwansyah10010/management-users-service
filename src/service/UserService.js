@@ -3,7 +3,7 @@ import User from "../model/User.js"
 
 export default class UserService{
 
-    getAll = (req,res)=>{
+    getAll = async (req,res)=>{
         let user = []
 
         return new Promise((resolve,reject)=>{

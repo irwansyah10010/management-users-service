@@ -7,7 +7,7 @@ client.connect()
     console.log("redis server connected");
 })
 .catch((err)=>{
-    console.log("Error connection to redis ",err);
+    console.log("Error redis connection",err);
 })
 
 export default client
