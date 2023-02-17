@@ -25,7 +25,7 @@ Jalankan CLI dengan mengetikan `npm start`(asumsi anda sudah berada difolder apl
 
 ### get all 
 `http://localhost:3000/users/` 
-method `GET`, mendapatkan list data user
+method `GET`, mendapatkan list data user. cache redis akan ditrigger pada proses ini dan menyimpan data ke redis dengan key `users`
 
 ### get by id
 `http://localhost:3000/users/{id}/id`
@@ -57,7 +57,7 @@ body:
 
 ### update
 `http://localhost:3000/users/{id}` 
-`PUT` memperbarui data user berdasarkan id({id} diganti dengan id yang diperbarui), 
+method `PUT` memperbarui data user berdasarkan id({id} diganti dengan id yang diperbarui), 
 
 body: 
 
@@ -73,5 +73,5 @@ body:
 
 ### delete
 `http://localhost:3000/users/{id}` 
-`DELETE` menghapus data user berdasarkan id({id} diganti dengan id yang dihapus)
+method `DELETE` menghapus data user berdasarkan id({id} diganti dengan id yang dihapus)
 
