@@ -15,9 +15,9 @@ const User = mongoose.Schema({
     },
     identityNumber:{
         type:Number,
-        required:true
+        required:true,
+        unique:true
     }
 })
-
 
 export default mongoose.model('user',User)

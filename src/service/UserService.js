@@ -1,6 +1,5 @@
 import User from "../model/User.js"
 
-
 export default class UserService{
 
     getAll = async (req,res)=>{
@@ -69,8 +68,10 @@ export default class UserService{
             if(user){
                 try {
                     deleted = User.deleteOne({_id:req.params.id})
+
+                    resolve(deleted)
                 } catch (error) {
-                    return error.message               
+                    resolved(error.message)             
                 }
             }
         })

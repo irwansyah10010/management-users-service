@@ -1,10 +1,10 @@
 # Microservice
 Microservice dibangun menggunakan `nodejs - express` untuk menangani data user yang simpan ke dalam database `mongoDB` dan output yang diterima berupa object user(API), berikut bentuk dari data user yang dibuat:
-    - Id : key dari data user 
+    - Id : key dari data user(akan digenerate langsung oleh DB)
     - userName: nama dari user
     - accountNumber: nomor akun user
-    - emailAddress: alamat email user
-    - identityNumber: nomor identitas dari user
+    - emailAddress: alamat email user(bersifat unik)
+    - identityNumber: nomor identitas dari user(bersifat unik)
 
 ## Perangkat yang diperlukan untuk menjalankan aplikasi ini
 Perangkat yang digunakan untuk menjalankan aplikasi sudah terlihat pada paragraf sebelumnya, berikut detailnya:
@@ -15,17 +15,18 @@ Perangkat yang digunakan untuk menjalankan aplikasi sudah terlihat pada paragraf
 
 
 ## Penggunaan
-Setelah perangkat yang dibutuhkan tersedia, anda perlu mengatur koneksi dari mongoDB dan redis pada folder `src/config` yang berisi source js yang mengatur koneksi(anda cukup mengubah host, port, nama db sesuai dengan pengaturan perangkat anda).
+Setelah perangkat yang dibutuhkan tersedia, anda perlu mengatur property dari mongoDB dan redis pada file `.env`(anda cukup mengubah host dan port sesuai dengan pengaturan perangkat anda).
 
 Jalankan CLI dengan mengetikan `npm start`(asumsi anda sudah berada difolder aplikasi)
 
 **Note: khusus untuk database, anda tidak perlu membuat database baru dalam mongoDB. Database akan dibuat secara otomatis saat menjalankan aplikasi pertama kali**
 
 ## API yang tersedia didalam aplikasi
+Proses cache redis akan diatur pada setiap permintaan API yang tersedia 
 
 ### get all 
 `http://localhost:3000/users/` 
-method `GET`, mendapatkan list data user. cache redis akan ditrigger pada proses ini dan menyimpan data ke redis dengan key `users`
+method `GET`, mendapatkan list data user. Pada saat permintaan pertama, data diperoleh langsung dari database dan cache redis dibuat. Lalu untuk permintaan kedua dan seterusnya, data diambil melalui cache redis.
 
 ### get by id
 `http://localhost:3000/users/{id}/id`
@@ -41,7 +42,7 @@ method `GET`, mendapatkan data user berdasarkan identityNumber({identityNumber} 
 
 ### save
 `http://localhost:3000/users` 
-method `POST`, menyimpan data user
+method `POST`, menyimpan data user dan cache redis dihapus
 
 body: 
 
@@ -57,7 +58,7 @@ body:
 
 ### update
 `http://localhost:3000/users/{id}` 
-method `PUT` memperbarui data user berdasarkan id({id} diganti dengan id yang diperbarui), 
+method `PUT` memperbarui data user berdasarkan id({id} diganti dengan id yang diperbarui) dan cache redis dihapus
 
 body: 
 
@@ -73,5 +74,5 @@ body:
 
 ### delete
 `http://localhost:3000/users/{id}` 
-method `DELETE` menghapus data user berdasarkan id({id} diganti dengan id yang dihapus)
+method `DELETE` menghapus data user berdasarkan id({id} diganti dengan id yang dihapus) dan cache redis dihapus
 

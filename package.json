@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "envdotenv": "^0.0.1",
     "express": "^4.18.2",
     "function-bind": "^1.1.1",
     "mongoose": "^6.9.1",
-    "redis": "^4.6.4"
+    "redis": "^4.6.4",
+    "util.promisify": "^1.1.1"
   },
   "description": ""
 }
