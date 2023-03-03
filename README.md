@@ -1,5 +1,6 @@
 # Microservice
 Microservice dibangun menggunakan `nodejs - express` untuk menangani data user yang simpan ke dalam database `mongoDB` dan output yang diterima berupa object user(API), berikut bentuk dari data user yang dibuat:
+
     - Id : key dari data user(akan digenerate langsung oleh DB)
     - userName: nama dari user
     - accountNumber: nomor akun user
