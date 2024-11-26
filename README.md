@@ -77,3 +77,5 @@ body:
 `http://localhost:3000/users/{id}` 
 method `DELETE` menghapus data user berdasarkan id({id} diganti dengan id yang dihapus) dan cache redis dihapus
 
+
+@wan
